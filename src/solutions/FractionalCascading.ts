@@ -1,3 +1,4 @@
+import { performance } from "perf_hooks";
 import { FractionalCascadingNodeListMerge } from "../algorithms/MergeArrays";
 import NodeListBinarySearch from "../algorithms/NodeListBinarySearch";
 import FCNode from "../class/FCNode";
@@ -50,14 +51,38 @@ const SearchingOperator = (
   return result;
 };
 
-const FractionalCascading = (
+export const FractionalCascading = (
   dataArrays: Array<Array<number>>,
   target: number
 ): Array<number> => {
-  const result: Array<number> = [];
+  let result: Array<number> = [];
   const NodeLists: Array<Array<FCNode>> = initialingNodeList(dataArrays);
   const mergedNodeLists = FractionalCascadingNodeListMerge(NodeLists);
-  return SearchingOperator(mergedNodeLists, target);
+  var startTimeForSolution3 = performance.now();
+  result = SearchingOperator(mergedNodeLists, target);
+  var endTimeForSolution3 = performance.now();
+  console.log(
+    "Solution3 search time:",
+    endTimeForSolution3 - startTimeForSolution3
+  );
+  return result;
 };
 
-export default FractionalCascading;
+export const FractionalCascadingBatch = (
+  testDataBatch: Array<Array<Array<number>>>,
+  target: number
+): Array<Array<number>> => {
+  let resultBatch: Array<Array<number>> = [];
+  let searchTime = 0;
+  testDataBatch.forEach((dataArrays) => {
+    let result: Array<number> = [];
+    const NodeLists: Array<Array<FCNode>> = initialingNodeList(dataArrays);
+    const mergedNodeLists = FractionalCascadingNodeListMerge(NodeLists);
+    var startTimeForSolution3 = performance.now();
+    resultBatch.push(SearchingOperator(mergedNodeLists, target));
+    var endTimeForSolution3 = performance.now();
+    searchTime += endTimeForSolution3 - startTimeForSolution3;
+  });
+  console.log("Solution3 (batch) Overall Search Time:", searchTime);
+  return resultBatch;
+};

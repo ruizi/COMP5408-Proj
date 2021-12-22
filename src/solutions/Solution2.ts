@@ -1,3 +1,4 @@
+import { performance } from "perf_hooks";
 import { NodeForSolution2 } from "../class/NodeForSolution2";
 import { MergeSortedArrays } from "../algorithms/MergeArrays";
 import BuildUpAuxiliaryArray from "../algorithms/BuildUpAuxiliaryArray";
@@ -44,19 +45,45 @@ const SearchingOperator = (
   return node.getAuxiliaryArray();
 };
 
-const Solution2 = (
+export const Solution2 = (
   dataArrays: Array<Array<number>>,
   target: number
 ): Array<number> => {
-  const result: Array<number> = [];
+  let result: Array<number> = [];
   const mergedArray = mergeArraysToSingleArray(dataArrays);
   const MergedNodeList = buildUpNodeList(dataArrays, mergedArray);
-  return SearchingOperator(
+  var startTimeForSolution2 = performance.now();
+  result = SearchingOperator(
     mergedArray,
     MergedNodeList,
     target,
     dataArrays.length
   );
+  var endTimeForSolution2 = performance.now();
+  console.log(
+    "Solution2 search time:",
+    endTimeForSolution2 - startTimeForSolution2
+  );
+  return result;
 };
 
-export default Solution2;
+export const Solution2Batch = (
+  testDataBatch: Array<Array<Array<number>>>,
+  target: number
+) => {
+  let resultBatch: Array<Array<number>> = [];
+  let searchTime = 0;
+  testDataBatch.forEach((dataArrays) => {
+    let result: Array<number> = [];
+    const mergedArray = mergeArraysToSingleArray(dataArrays);
+    const MergedNodeList = buildUpNodeList(dataArrays, mergedArray);
+    var startTimeForSolution2 = performance.now();
+    resultBatch.push(
+      SearchingOperator(mergedArray, MergedNodeList, target, dataArrays.length)
+    );
+    var endTimeForSolution2 = performance.now();
+    searchTime += endTimeForSolution2 - startTimeForSolution2;
+  });
+  console.log("Solution2 (batch) Overall Search Time:", searchTime);
+  return resultBatch;
+};
