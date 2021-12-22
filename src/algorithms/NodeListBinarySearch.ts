@@ -5,7 +5,7 @@ const NodeListBinarySearch = (
   highIndex = arr.length - 1
 ) => {
   if (target > arr[highIndex].getValue()) {
-    return -1; // return -1 if target is greater than the last element in the array which should be the infinite.
+    return Infinity; // return -1 if target is greater than the last element in the array which should be the infinite.
   }
   if (target === arr[highIndex].getValue()) {
     return highIndex;

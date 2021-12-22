@@ -6,14 +6,13 @@ const Solution1 = (
 ): Array<number> => {
   const result: Array<number> = [];
   dataArrays.forEach((dataArray) => {
-    console.log(`Searching for ${target} in ${dataArray}`);
     const resultIndex = BinarySearch(
       dataArray,
       target,
       0,
       dataArray.length - 1
     );
-    console.log(dataArray[resultIndex]);
+
     if (resultIndex === -1) {
       result.push(Infinity);
     } else {

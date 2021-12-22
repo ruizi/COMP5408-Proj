@@ -17,6 +17,39 @@ const initialingNodeList = (
   return NodeLists;
 };
 
+const SearchingOperator = (
+  mergedNodeLists: Array<Array<FCNode>>,
+  target: number
+): Array<number> => {
+  const result = [];
+  let startPointIndex = NodeListBinarySearch(mergedNodeLists[0], target);
+
+  let layer = 0;
+  while (layer <= mergedNodeLists.length - 1) {
+    if (
+      layer !== 0 &&
+      startPointIndex !== 0 &&
+      mergedNodeLists[layer][startPointIndex - 1].getValue() >= target
+    ) {
+      startPointIndex = mergedNodeLists[layer][startPointIndex - 1].getIndex();
+    }
+
+    const ResIndex = mergedNodeLists[layer][startPointIndex].getNextNode();
+
+    if (mergedNodeLists[layer][ResIndex].getNextNode() === Infinity) {
+      result.push(Infinity);
+    } else {
+      result.push(mergedNodeLists[layer][ResIndex].getValue());
+    }
+
+    startPointIndex = mergedNodeLists[layer][startPointIndex].getUpNode();
+
+    layer++;
+  }
+
+  return result;
+};
+
 const FractionalCascading = (
   dataArrays: Array<Array<number>>,
   target: number
@@ -24,24 +57,7 @@ const FractionalCascading = (
   const result: Array<number> = [];
   const NodeLists: Array<Array<FCNode>> = initialingNodeList(dataArrays);
   const mergedNodeLists = FractionalCascadingNodeListMerge(NodeLists);
-
-  let startPointIndex = NodeListBinarySearch(mergedNodeLists[0], target);
-
-  let layer = 0;
-  while (layer <= mergedNodeLists.length - 1) {
-    if (
-      startPointIndex !== 0 &&
-      mergedNodeLists[layer][startPointIndex - 1].getValue() >= target
-    ) {
-      startPointIndex = mergedNodeLists[layer][startPointIndex - 1].getIndex();
-    }
-    const ResIndex = mergedNodeLists[layer][startPointIndex].getNextNode();
-    result.push(mergedNodeLists[layer][ResIndex].getValue());
-    startPointIndex = mergedNodeLists[layer][startPointIndex].getUpNode();
-    layer++;
-  }
-
-  return result;
+  return SearchingOperator(mergedNodeLists, target);
 };
 
 export default FractionalCascading;

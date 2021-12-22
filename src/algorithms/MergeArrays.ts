@@ -36,25 +36,6 @@ export const MergeSortedArrays = (dataArrays: Array<Array<number>>) => {
   return dataArrays.length === 1 ? dataArrays[0] : [];
 };
 
-// export const FractionalCascadingMerge = (dataArrays: Array<Array<number>>) => {
-//   for (let i = dataArrays.length - 2; i >= 0; i--) {
-//     const arrayUp = dataArrays[i + 1];
-//     const arrayDown = dataArrays[i];
-//     const everySecondElementOfArrayUp = arrayUp.filter(
-//       (_, index) => index % 2 === 1
-//     );
-//     // console.log("up", arrayUp);
-//     // console.log("everySecondElementOfArrayDown", everySecondElementOfArrayDown);
-//     const newArrayDown = MergeTwoSortedArrays(
-//       arrayDown,
-//       everySecondElementOfArrayUp
-//     );
-//     dataArrays[i] = newArrayDown;
-//   }
-
-//   return dataArrays;
-// };
-
 const MergeHalfUpNodeList2DownNodeList = (
   nodeListUp: Array<FCNode>,
   nodeListDown: Array<FCNode>
@@ -115,42 +96,64 @@ const MergeHalfUpNodeList2DownNodeList = (
   }
   let nextNodeIndex = Infinity;
   for (let i = sortedNodeList.length - 1; i >= 0; i--) {
-    // console.log("iterate node:::", sortedNodeList[i]);
     if (sortedNodeList[i].getUpNode() !== undefined) {
-      // console.log("node::: up node isDefined", sortedNodeList[i].getUpNode());
-      // console.log("nextNodeIndex", nextNodeIndex);
       // if the node has an up node means it is from upper layer
       sortedNodeList[i].setNextNode(nextNodeIndex);
-      // console.log("node::: updated next point", sortedNodeList[i]);
     } else {
-      // console.log("node::: up node is undefined");
       nextNodeIndex = sortedNodeList[i].getIndex();
       // nodeListUp find out the up node
       const upNodeIndex = NodeListBinarySearch(
         nodeListUp,
         sortedNodeList[i].getValue()
       );
-      // console.log("upNodeIndex", upNodeIndex);
-      sortedNodeList[i].setUpNode(upNodeIndex);
-      // console.log("node::: next node index", nextNodeIndex);
+
+      if (upNodeIndex === Infinity) {
+        sortedNodeList[i].setUpNode(nodeListUp.length);
+      } else {
+        sortedNodeList[i].setUpNode(upNodeIndex);
+      }
     }
   }
 
   return sortedNodeList;
 };
 
-export const FractionalCascadingNodeListMerge = (
-  NodeLists: Array<Array<FCNode>>
-) => {
-  for (let i = NodeLists.length - 2; i >= 0; i--) {
-    const nodeListUp = NodeLists[i + 1];
-    const nodeListDown = NodeLists[i];
+const addInfinityNodes = (nodeLists: Array<Array<FCNode>>) => {
+  for (let i = nodeLists.length - 1; i >= 0; i--) {
+    const nodeList = nodeLists[i];
+    if (i === nodeLists.length - 1) {
+      const infinityNode = new FCNode(
+        Infinity,
+        nodeList.length,
+        nodeList.length
+      );
+      nodeList.push(infinityNode);
+    } else {
+      const infinityNode = new FCNode(
+        Infinity,
+        nodeList.length,
+        nodeList.length,
+        nodeLists[i + 1].length - 1
+      );
+      nodeList.push(infinityNode);
+    }
+  }
+};
 
+export const FractionalCascadingNodeListMerge = (
+  nodeLists: Array<Array<FCNode>>
+) => {
+  for (let i = nodeLists.length - 2; i >= 0; i--) {
+    const nodeListUp = nodeLists[i + 1];
+    const nodeListDown = nodeLists[i];
     const newNodeListDown = MergeHalfUpNodeList2DownNodeList(
       nodeListUp,
       nodeListDown
     );
-    NodeLists[i] = newNodeListDown;
+
+    nodeLists[i] = newNodeListDown;
   }
-  return NodeLists;
+
+  addInfinityNodes(nodeLists);
+  return nodeLists;
 };

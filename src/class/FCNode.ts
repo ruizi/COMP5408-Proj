@@ -2,7 +2,7 @@ class FCNode {
   value: number;
   index: number;
   layer: number;
-  upNode: number;
+  upNode: number | undefined;
   nextNode: number;
 
   constructor(value, index, nextNode, upNode?) {
@@ -18,7 +18,7 @@ class FCNode {
     return this.index;
   };
   getUpNode = (): number | undefined => {
-    return this.upNode;
+    return this.upNode !== undefined ? this.upNode : undefined;
   };
   getNextNode = (): number => {
     return this.nextNode;

@@ -20,17 +20,15 @@ const BinarySearch = (
   if (lowIndex <= highIndex) {
     // get the middle index
     const midIndex = Math.floor((lowIndex + highIndex) / 2);
-    console.log(`midIndex: ${midIndex}`);
+
     // if the target is found, return the index
     if (arr[midIndex] === target) {
       return midIndex;
     }
     // if the target is less than the middle element, search the left side
     if (arr[midIndex] > target) {
-      console.log(`Searching left side of ${arr[midIndex]}`);
       return BinarySearch(arr, target, lowIndex, midIndex);
     } else {
-      console.log(`Searching right side of ${arr[midIndex]}`);
       // if the target is greater than the middle element, search the right side
       return BinarySearch(arr, target, midIndex + 1, highIndex);
     }

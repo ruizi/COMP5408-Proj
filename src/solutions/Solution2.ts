@@ -9,7 +9,7 @@ const buildUpNodeList = (
 ): Array<NodeForSolution2> => {
   const NodeList: Array<NodeForSolution2> = [];
   let auxiliaryArray: Array<number> = Array(dataArrays.length).fill(Infinity);
-  console.log(auxiliaryArray);
+
   const dataArrayForIterate = lodash.cloneDeep(dataArrays);
   for (let i = mergedArray.length - 1; i >= 0; i--) {
     auxiliaryArray = BuildUpAuxiliaryArray(
@@ -20,7 +20,7 @@ const buildUpNodeList = (
     const node = new NodeForSolution2(mergedArray[i], auxiliaryArray);
     NodeList.unshift(node);
   }
-  //console.log(NodeList);
+
   return NodeList;
 };
 
@@ -36,8 +36,6 @@ const SearchingOperator = (
   target: number
 ): Array<number> => {
   const valueIndex = BinarySearch(mergedArray, target);
-  //   console.log("valueIndex", valueIndex);
-  //   console.log("value", mergedArray[valueIndex]);
   const node = MergedNodeList[valueIndex];
   return node.getAuxiliaryArray();
 };
