@@ -10,6 +10,27 @@ In this project, I implemented three solutions to find out the element which is 
 
 - 3. Using Fractional Cascading
 
+## Structure
+```
+.
+├── algorithms
+│   ├── BuildUpAuxiliaryArray.ts
+│   ├── MergeArrays.ts
+│   └── NodeListBinarySearch.ts
+├── class
+│   ├── FCNode.ts
+│   ├── NodeForSolution1.ts
+│   └── NodeForSolution2.ts
+├── data
+│   ├── Arrays.ts
+│   └── DataGenerator.ts
+├── solutions
+│   ├── FractionalCascading.ts
+│   ├── Solution1.ts
+│   └── Solution2.ts
+└── index.ts
+```
+
 ## How to run it in your local env?
 
 #### 1. Download it from Github
