@@ -2,7 +2,7 @@ import { NodeForSolution2 } from "../class/NodeForSolution2";
 import { MergeSortedArrays } from "../algorithms/MergeArrays";
 import BuildUpAuxiliaryArray from "../algorithms/BuildUpAuxiliaryArray";
 import * as lodash from "lodash";
-import BinarySearch from "../algorithms/BinarySearch";
+import NodeListBinarySearch from "../algorithms/NodeListBinarySearch";
 const buildUpNodeList = (
   dataArrays: Array<Array<number>>,
   mergedArray: Array<number>
@@ -33,9 +33,13 @@ const mergeArraysToSingleArray = (
 const SearchingOperator = (
   mergedArray: Array<number>,
   MergedNodeList: Array<NodeForSolution2>,
-  target: number
+  target: number,
+  layer: number
 ): Array<number> => {
-  const valueIndex = BinarySearch(mergedArray, target);
+  const valueIndex = NodeListBinarySearch(MergedNodeList, target);
+  if (valueIndex === Infinity) {
+    return Array(layer).fill(Infinity);
+  }
   const node = MergedNodeList[valueIndex];
   return node.getAuxiliaryArray();
 };
@@ -47,7 +51,12 @@ const Solution2 = (
   const result: Array<number> = [];
   const mergedArray = mergeArraysToSingleArray(dataArrays);
   const MergedNodeList = buildUpNodeList(dataArrays, mergedArray);
-  return SearchingOperator(mergedArray, MergedNodeList, target);
+  return SearchingOperator(
+    mergedArray,
+    MergedNodeList,
+    target,
+    dataArrays.length
+  );
 };
 
 export default Solution2;
