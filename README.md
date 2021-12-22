@@ -12,6 +12,7 @@ In this project, I implemented three solutions to find out the element which is 
 
 ## How to run it in your local env?
 
+
 #### 1. Download it from Github
 
 ```
@@ -19,6 +20,7 @@ git clone git@github.com:ruizi/COMP5408-Proj.git
 ```
 
 #### 2. Open it with VSCode or any other code editor you like
+<img width="1912" alt="Screen Shot 2021-12-22 at 4 22 13 PM" src="https://user-images.githubusercontent.com/30584659/147156658-083425d5-f54e-4695-bde4-f9911c53d2c6.png">
 
 #### 3. Install the run time env
 
@@ -45,11 +47,15 @@ So, if you want to run it in you local machine.
    npm start
    ```
 
-#### 4. Result.
+#### 4. Result
+    - 1. For experiment mode:
+    
+    <img width="1519" alt="Screen Shot 2021-12-22 at 4 23 18 PM" src="https://user-images.githubusercontent.com/30584659/147156774-07c4d11e-cf36-4956-b7f5-083750daca86.png">
 
-    1. For experiment mode:
+    - 2. For batch mode:
+    
+    <img width="1233" alt="Screen Shot 2021-12-22 at 4 26 08 PM" src="https://user-images.githubusercontent.com/30584659/147157038-c65a7610-fa58-4d26-b2a8-21345a89a14f.png">
 
-    2. For batch mode:
 
 #### 5. Contact.
 
