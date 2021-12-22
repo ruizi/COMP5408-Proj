@@ -1,0 +1,18 @@
+{
+  "name": "comp5408-proj",
+  "version": "1.0.0",
+  "description": "this is the project for comp5408 2021 Fall",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "tsc && node dist/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "typescript": "^4.5.4"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.2"
+  }
+}
