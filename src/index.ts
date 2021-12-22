@@ -9,7 +9,7 @@ import {
 import DataGenerator from "./data/DataGenerator";
 
 const experimentMode = () => {
-  const target = 0;
+  const target = 4.5;
   const result1 = Solution1([array1, array2, array3], target);
   const result2 = Solution2([array1, array2, array3], target);
   const result3 = FractionalCascading([array1, array2, array3], target);
@@ -20,9 +20,7 @@ const experimentMode = () => {
 
 const batchTestingMode = () => {
   const target = 10;
-  //const testData: Array<Array<Array<number>>> = DataGenerator(20, 5, 10);
   const testData: Array<Array<Array<number>>> = DataGenerator(20, 5, 10);
-  console.log("testData", testData);
 
   const solution1ResultInBatch: Array<Array<number>> = Solution1Batch(
     testData,
@@ -45,7 +43,7 @@ const batchTestingMode = () => {
 };
 
 const main = () => {
-  // experimentMode();
-  batchTestingMode();
+  experimentMode();
+  //batchTestingMode();
 };
 main();
