@@ -75,7 +75,6 @@ export const FractionalCascadingBatch = (
   let resultBatch: Array<Array<number>> = [];
   let searchTime = 0;
   testDataBatch.forEach((dataArrays) => {
-    let result: Array<number> = [];
     const NodeLists: Array<Array<FCNode>> = initialingNodeList(dataArrays);
     const mergedNodeLists = FractionalCascadingNodeListMerge(NodeLists);
     var startTimeForSolution3 = performance.now();

@@ -20,7 +20,7 @@ const experimentMode = () => {
 
 const batchTestingMode = () => {
   const target = 10;
-  const testData: Array<Array<Array<number>>> = DataGenerator(20, 5, 10);
+  const testData: Array<Array<Array<number>>> = DataGenerator(10, 5, 5);
 
   const solution1ResultInBatch: Array<Array<number>> = Solution1Batch(
     testData,
@@ -43,7 +43,7 @@ const batchTestingMode = () => {
 };
 
 const main = () => {
-  experimentMode();
-  //batchTestingMode();
+  // experimentMode();
+  batchTestingMode();
 };
 main();
