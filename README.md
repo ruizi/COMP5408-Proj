@@ -57,6 +57,8 @@ So, if you want to run it in you local machine.
 
 ## Contact me
 
-If you found some problems, please open a issue in this repository or email me with rcai073@uottawa.ca, Thank you!
+If you found some problems, please open a issue in this repository or email me with rcai073@uottawa.ca.
+
+Thank you!
 
 Have a nice day! and Merry Chirsmas!
