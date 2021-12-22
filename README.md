@@ -47,7 +47,7 @@ So, if you want to run it in you local machine.
    npm start
    ```
 
-#### 4. Result
+## Result
 
 - 1. For experiment mode:
      <img width="1519" alt="Screen Shot 2021-12-22 at 4 23 18 PM" src="https://user-images.githubusercontent.com/30584659/147156774-07c4d11e-cf36-4956-b7f5-083750daca86.png">
@@ -55,8 +55,8 @@ So, if you want to run it in you local machine.
 - 2. For batch mode:
      <img width="1233" alt="Screen Shot 2021-12-22 at 4 26 08 PM" src="https://user-images.githubusercontent.com/30584659/147157038-c65a7610-fa58-4d26-b2a8-21345a89a14f.png">
 
-#### 5. Contact.
+## Contact me
 
-If you found some problems, please open a issue in this repository, Thank you!
+If you found some problems, please open a issue in this repository or email me with rcai073@uottawa.ca, Thank you!
 
 Have a nice day! and Merry Chirsmas!
